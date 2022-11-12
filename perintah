@@ -1,0 +1,43 @@
+1.Preload
+installation command:
+sudo apt-get install preload
+
+2. Clean Up APT Cache
+command:
+sudo apt-get autoclean
+
+3. Disabling Unnecessary Startup Applications
+startup list command:
+
+sudo systemctl list-unit-files –type=service --state=enabled
+disable command:
+sudo systemctl disable "service name"
+Enable command:
+sudo enable "service name"
+
+4. Adjust Swappiness4. Adjust Swappiness4. Adjust Swappiness
+If you have 4 GB or more ram, consider setting your swappiness to 1.
+To check your current used Swappiness, run this command:
+cat /proc/sys/vm/swappiness
+
+to change it, edit this file:
+ 
+sudo gedit /etc/sysctl.conf
+Search for this line (if not present, just add it):
+vm.swappiness=10
+
+5. Use TMPFS To Reduce Disk I/O
+Open the terminal and edit the /etc/fstab file with this command:
+sudo nano /etc/fstab
+At the end of the file, add these two lines:
+# Move /tmp to RAM
+tmpfs /tmp tmpfs defaults,noexec,nosuid 0 0
+
+6. Reducing Overheating of the System
+Installation command:
+sudo apt-get install tlp tlp-rdw
+
+7. Cleaning up the Thumbnail Cache
+du -sh ~/.cache/thumbnails
+remove it by:
+sudo rm -r ~/.cache/thumbnails
